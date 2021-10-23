@@ -5,6 +5,15 @@ import pickle
 # MNIST module provide mnist dataset.
 # But the problem is it has three dimensional array so you need to make it into correct shape before start using it.
 
+def save_model(model_obj):
+    """
+    For saving the model
+    :param model_obj: AI algorithm.
+    :return: None
+    """
+    file = open("mnist.pickle", "wb")
+    pickle.dump(model_obj, file)
+
 
 X_train = mnist.train_images()
 y_train = mnist.train_labels()
@@ -19,19 +28,10 @@ clean_x_test = X_test.reshape((n_sample_test, nx_test * ny_test))
 
 # Start training
 svm = LinearSVC()
+print("Start traning...")
 svm.fit(clean_datasets, y_train)
-print(svm.score(clean_datasets, y_train))  # Printing the accuracy
-
-
-def save_model(model_obj):
-    """
-    For saving the model
-    :param model_obj: AI algorithm.
-    :return: None
-    """
-    file = open("mnist.pickle", "wb")
-    pickle.dump(model_obj, file)
-    return None
+print("Acc: ", svm.score(clean_datasets, y_train))  # Printing the accuracy
+save_model(svm)
 
 
 def prediction(data):
