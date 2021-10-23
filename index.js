@@ -16,7 +16,6 @@ board.addEventListener("mousemove", (e) => {
 });
 
 function draw(e) {
-  console.log("click");
   const box = document.createElement("div");
   box.className = "box";
   box.style.top = `${Math.round(
