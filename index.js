@@ -9,7 +9,5 @@ board.addEventListener("click", (e) => {
   box.style.left = `${Math.round(
     e.clientX - board.getBoundingClientRect().x
   )}px`;
-  console.log(box.style.top);
-  console.log(box.style.left);
   board.appendChild(box);
 });
