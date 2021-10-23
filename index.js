@@ -1,6 +1,22 @@
 const board = document.getElementById("board");
+var mouseDown = false;
 
-board.addEventListener("click", (e) => {
+board.addEventListener("mousedown", () => {
+  mouseDown = true;
+});
+
+board.addEventListener("mouseup", () => {
+  mouseDown = false;
+});
+
+board.addEventListener("mousemove", (e) => {
+  if (mouseDown) {
+    draw(e);
+  }
+});
+
+function draw(e) {
+  console.log("click");
   const box = document.createElement("div");
   box.className = "box";
   box.style.top = `${Math.round(
@@ -10,4 +26,4 @@ board.addEventListener("click", (e) => {
     e.clientX - board.getBoundingClientRect().x
   )}px`;
   board.appendChild(box);
-});
+}
