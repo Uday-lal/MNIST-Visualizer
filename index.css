@@ -40,7 +40,7 @@ button.btn-flat {
 
 div.box {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.582);
+  background-color: grey;
   width: 20px;
   height: 20px;
   border-radius: 50%;
