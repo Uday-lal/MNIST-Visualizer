@@ -16,13 +16,25 @@ board.addEventListener("mousemove", (e) => {
 });
 
 function draw(e) {
-  const box = document.createElement("div");
-  box.className = "box";
-  box.style.top = `${Math.round(
-    e.clientY - board.getBoundingClientRect().y
-  )}px`;
-  box.style.left = `${Math.round(
-    e.clientX - board.getBoundingClientRect().x
-  )}px`;
-  board.appendChild(box);
+  if (
+    e.clientX >= board.getBoundingClientRect().x &&
+    e.clientX <=
+      board.getBoundingClientRect().x + board.getBoundingClientRect().width
+  ) {
+    if (
+      e.clientY >= board.getBoundingClientRect().y &&
+      e.clientY <=
+        board.getBoundingClientRect().y + board.getBoundingClientRect().height
+    ) {
+      const box = document.createElement("div");
+      box.className = "box";
+      box.style.top = `${Math.round(
+        e.clientY - board.getBoundingClientRect().y - 10
+      )}px`;
+      box.style.left = `${Math.round(
+        e.clientX - board.getBoundingClientRect().x - 10
+      )}px`;
+      board.appendChild(box);
+    }
+  }
 }
