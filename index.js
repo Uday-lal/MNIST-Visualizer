@@ -1,4 +1,5 @@
 const board = document.getElementById("board");
+const clear = document.getElementById("clear");
 var mouseDown = false;
 
 board.addEventListener("mousedown", () => {
@@ -38,3 +39,7 @@ function draw(e) {
     }
   }
 }
+
+clear.addEventListener("click", () => {
+  board.innerHTML = null;
+});
