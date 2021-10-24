@@ -1,5 +1,7 @@
 const board = document.getElementById("board");
 const clear = document.getElementById("clear");
+const guess = document.getElementById("guess");
+var cursorPos = [];
 var mouseDown = false;
 
 board.addEventListener("mousedown", () => {
@@ -28,14 +30,13 @@ function draw(e) {
         board.getBoundingClientRect().y + board.getBoundingClientRect().height
     ) {
       const box = document.createElement("div");
+      const posx = Math.round(e.clientX - board.getBoundingClientRect().x - 10);
+      const posy = Math.round(e.clientY - board.getBoundingClientRect().y - 10);
       box.className = "box";
-      box.style.top = `${Math.round(
-        e.clientY - board.getBoundingClientRect().y - 10
-      )}px`;
-      box.style.left = `${Math.round(
-        e.clientX - board.getBoundingClientRect().x - 10
-      )}px`;
+      box.style.top = `${posy}px`;
+      box.style.left = `${posx}px`;
       board.appendChild(box);
+      cursorPos.push([posx, posy]);
     } else {
       mouseDown = false;
     }
@@ -46,4 +47,26 @@ function draw(e) {
 
 clear.addEventListener("click", () => {
   board.innerHTML = null;
+  cursorPos = [];
+});
+
+guess.addEventListener("click", () => {
+  fetch("http://127.0.0.1:8000/api/pridict-number", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json;charset=UTF-8",
+    },
+    body: JSON.stringify({
+      corrdinate_offet: cursorPos,
+      board_width: board.getBoundingClientRect().width,
+      board_height: board.getBoundingClientRect().height,
+    }),
+  }).then((responce) => {
+    if (responce.ok) {
+      cursorPos = [];
+      responce.json().then((result) => {
+        console.log(result);
+      });
+    }
+  });
 });
