@@ -65,6 +65,7 @@ guess.addEventListener("click", () => {
     }).then((responce) => {
       if (responce.ok) {
         cursorPos = [];
+        board.innerHTML = null;
         responce.json().then((result) => {
           console.log(result);
         });
