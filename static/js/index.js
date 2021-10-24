@@ -51,22 +51,24 @@ clear.addEventListener("click", () => {
 });
 
 guess.addEventListener("click", () => {
-  fetch("http://127.0.0.1:8000/api/pridict-number", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json;charset=UTF-8",
-    },
-    body: JSON.stringify({
-      corrdinate_offet: cursorPos,
-      board_width: board.getBoundingClientRect().width,
-      board_height: board.getBoundingClientRect().height,
-    }),
-  }).then((responce) => {
-    if (responce.ok) {
-      cursorPos = [];
-      responce.json().then((result) => {
-        console.log(result);
-      });
-    }
-  });
+  if (cursorPos.length !== 0) {
+    fetch("http://127.0.0.1:8000/api/pridict-number", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json;charset=UTF-8",
+      },
+      body: JSON.stringify({
+        corrdinate_offet: cursorPos,
+        board_width: board.getBoundingClientRect().width,
+        board_height: board.getBoundingClientRect().height,
+      }),
+    }).then((responce) => {
+      if (responce.ok) {
+        cursorPos = [];
+        responce.json().then((result) => {
+          console.log(result);
+        });
+      }
+    });
+  }
 });
