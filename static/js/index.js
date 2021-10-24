@@ -59,7 +59,7 @@ function openPopup(predictNumber) {
   if (predictNumber) {
     note.style.display = "block";
     numberSection.style.color = "black";
-    numberSection.innerHTML = `The model predict's the number is ${predictNumber}`;
+    numberSection.innerHTML = `The model predict's this number is ${predictNumber}`;
   } else {
     const note = document.getElementById("note");
     note.style.display = "none";
@@ -75,7 +75,7 @@ clear.addEventListener("click", () => {
 
 guess.addEventListener("click", () => {
   if (cursorPos.length !== 0) {
-    fetch("http://127.0.0.1:8000/api/pridict-number", {
+    fetch("https://my-mnist.herokuapp.com/api/pridict-number", {
       method: "POST",
       headers: {
         "content-type": "application/json;charset=UTF-8",
