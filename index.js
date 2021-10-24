@@ -36,7 +36,11 @@ function draw(e) {
         e.clientX - board.getBoundingClientRect().x - 10
       )}px`;
       board.appendChild(box);
+    } else {
+      mouseDown = false;
     }
+  } else {
+    mouseDown = false;
   }
 }
 

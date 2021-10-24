@@ -18,6 +18,7 @@ div.board {
 
 div#board {
   position: relative;
+  overflow: hidden;
   border-radius: 20px;
   background-color: ghostwhite;
   box-shadow: 5px 10px 18px #888888;
