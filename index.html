@@ -8,10 +8,34 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./static/css/index.css" />
     <title>MNIST Nunber Gusser</title>
   </head>
   <body>
+    <div class="popup" id="popup" style="display: none">
+      <div class="card">
+        <button
+          class="waves-effect waves-teal btn-flat"
+          id="close"
+          style="color: black"
+        >
+          <i class="material-icons">close</i>
+        </button>
+        <img src="./static/svg/ai.svg" alt="ai" />
+        <div id="popup-text-section">
+          <p id="predict"></p>
+        </div>
+        <span id="note"
+          >Note: This model has about 88% of accuracy and created using
+          svm(Support Vector Machine) so it could predict some numbers
+          wrong.</span
+        >
+      </div>
+    </div>
     <nav class="purple lighten-1">
       <div class="nav-wrapper">
         <span class="brand-logo">MNIST</span>
@@ -24,7 +48,7 @@
           id="guess"
           class="waves-effect waves-light btn purple lighten-1"
         >
-          Guess
+          Predict
         </button>
         <button
           id="clear"

@@ -38,14 +38,18 @@ def pridict(pridict: PridictModel):
     corrdinate_offset = pridict.corrdinate_offet
     board_width = pridict.board_width
     board_height = pridict.board_height
-    scale_data = ScaleData(
-        mouse_pos=corrdinate_offset,
-        grid_width=board_width,
-        grid_height=board_height
-    ).scale_img_data()
+    try:
+        scale_data = ScaleData(
+            mouse_pos=corrdinate_offset,
+            grid_width=board_width,
+            grid_height=board_height
+        ).scale_img_data()
+    except Exception:
+        return {"prediction": None, "error": True}
     prediction_ = prediction(scale_data)
+
     predicted_number = int(prediction_[0])
-    return {"prediction": predicted_number}
+    return {"prediction": predicted_number, "error": False}
 
 
 if __name__ == "__main__":

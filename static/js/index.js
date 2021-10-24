@@ -1,6 +1,7 @@
 const board = document.getElementById("board");
 const clear = document.getElementById("clear");
 const guess = document.getElementById("guess");
+const closeButton = document.getElementById("close");
 var cursorPos = [];
 var mouseDown = false;
 
@@ -16,6 +17,11 @@ board.addEventListener("mousemove", (e) => {
   if (mouseDown) {
     draw(e);
   }
+});
+
+closeButton.addEventListener("click", () => {
+  const popup = document.getElementById("popup");
+  popup.style.display = "none";
 });
 
 function draw(e) {
@@ -45,6 +51,23 @@ function draw(e) {
   }
 }
 
+function openPopup(predictNumber) {
+  const popup = document.getElementById("popup");
+  const numberSection = document.getElementById("predict");
+  const note = document.getElementById("note");
+  popup.style.display = "flex";
+  if (predictNumber) {
+    note.style.display = "block";
+    numberSection.style.color = "black";
+    numberSection.innerHTML = `The model predict's the number is ${predictNumber}`;
+  } else {
+    const note = document.getElementById("note");
+    note.style.display = "none";
+    numberSection.style.color = "red";
+    numberSection.innerHTML = ":( Something went wrong!!";
+  }
+}
+
 clear.addEventListener("click", () => {
   board.innerHTML = null;
   cursorPos = [];
@@ -67,7 +90,7 @@ guess.addEventListener("click", () => {
         cursorPos = [];
         board.innerHTML = null;
         responce.json().then((result) => {
-          console.log(result);
+          openPopup(result.prediction);
         });
       }
     });

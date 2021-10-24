@@ -8,8 +8,8 @@ class ScaleData:
         self.height = 28
         self.grid_width = grid_width
         self.grid_height = grid_height
-        self.thick_x = 20
-        self.thick_y = 20
+        self.thick_x = 30
+        self.thick_y = 30
 
     def scale_img_data(self):
         """
